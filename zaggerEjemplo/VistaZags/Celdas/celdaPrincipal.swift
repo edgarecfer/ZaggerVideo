@@ -8,6 +8,10 @@
 import UIKit
 import SDWebImage
 
+protocol celdaPrincipalDelegate:AnyObject {
+    func presentarImgVideo(url: String)
+}
+
 class celdaPrincipal: UICollectionViewCell {
     
     @IBOutlet weak var viewMain: UIView!
@@ -21,6 +25,7 @@ class celdaPrincipal: UICollectionViewCell {
     @IBOutlet weak var descripción: UILabel!
     
     var files: ZagParent?
+    weak var delegate: celdaPrincipalDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,6 +82,17 @@ class celdaPrincipal: UICollectionViewCell {
         viewMain.translatesAutoresizingMaskIntoConstraints = false
         viewMain.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width).isActive = true
     }
+    
+    func checkVisibilityOfCell(cell: CeldaImgVideo,indexPath: IndexPath) {
+        if let cellRect = (contenedorImgVideo.layoutAttributesForItem(at: indexPath)?.frame) {
+            let completelyVisible = contenedorImgVideo.bounds.contains(cellRect)
+            if completelyVisible{
+                cell.videoPlay()
+            } else {
+                cell.stopVideo()
+            }
+        }
+    }
 
 }
 extension celdaPrincipal: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -86,8 +102,12 @@ extension celdaPrincipal: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CeldaImgVideo", for: indexPath) as! CeldaImgVideo
-        cell.configImagen(url: files?.files?[indexPath.row].file_url ?? "ND")
+        
+        let esVideo = (files?.files?[indexPath.row].file_url ?? "ND").contains(".mp4")
+        cell.configImagen(url: files?.files?[indexPath.row].file_url ?? "ND", esVideo: esVideo)
+        cell.delegate = self
         actualizarContador(numero: indexPath.row+1)
+        
         return cell
     }
     
@@ -97,5 +117,28 @@ extension celdaPrincipal: UICollectionViewDelegate, UICollectionViewDataSource, 
         let heightScreen = sizeScreen.height
         
         return CGSize(width: widthScreen, height: heightScreen)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleCell = self.contenedorImgVideo.indexPathsForVisibleItems.sorted { top, bottom -> Bool in
+            return top.section < bottom.section || top.row < bottom.row
+        }.compactMap { indexPath -> UICollectionViewCell? in
+            return self.contenedorImgVideo.cellForItem(at: indexPath)
+        }
+        
+        let indexPaths = self.contenedorImgVideo.indexPathsForVisibleItems.sorted()
+        let cellCount = visibleCell.count
+        guard let firstCell = visibleCell.first as? CeldaImgVideo, let firstIndex = indexPaths.first else {return}
+        checkVisibilityOfCell(cell: firstCell, indexPath: firstIndex)
+        if cellCount == 1 {return}
+        guard let lastCell = visibleCell.last as? CeldaImgVideo, let lastIndex = indexPaths.last else {return}
+        checkVisibilityOfCell(cell: lastCell, indexPath: lastIndex)
+    }
+
+}
+
+extension celdaPrincipal: CeldaImgVideoDelgate {
+    func verImgVideo(url: String) {
+        delegate?.presentarImgVideo(url: url)
     }
 }

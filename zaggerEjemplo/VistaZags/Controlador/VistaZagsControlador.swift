@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 class VistaZagsControlador: UIViewController {
     
@@ -14,6 +15,7 @@ class VistaZagsControlador: UIViewController {
     
     var apiZagger = ApiZaggerPrincipal()
     var modeloDatos: ModeloPrincipal?
+    var streamController = AVPlayerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +62,21 @@ extension VistaZagsControlador: UICollectionViewDelegate, UICollectionViewDataSo
         let datos = modeloDatos?.zags?[indexPath.row].zag_parent ?? ZagParent()
         let ocultarColeccion = (modeloDatos?.zags?[indexPath.row].zag_parent == nil) ? true : false
         
+        cell.delegate = self
         cell.configItem(nombre: nombreUsuario, imgUsuario: imagenUsuario, titulo: titulo, descripcion: descripción, filesDatos: datos)
         cell.ocultarColeccion(ocultar: ocultarColeccion)
         return cell
     }
 
+}
+
+extension VistaZagsControlador: celdaPrincipalDelegate {
+    func presentarImgVideo(url: String) {
+        let url = url
+        let streamplayer = AVPlayer(url: URL(string: url)!)
+        streamController.player = streamplayer
+        self.present(self.streamController, animated: true, completion: {
+            self.streamController.player?.play()
+        })
+    }
 }
