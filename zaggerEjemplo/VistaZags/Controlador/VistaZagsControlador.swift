@@ -60,7 +60,7 @@ extension VistaZagsControlador: UICollectionViewDelegate, UICollectionViewDataSo
         let titulo = modeloDatos?.zags?[indexPath.row].zag ?? ""
         let descripción = modeloDatos?.zags?[indexPath.row].caption ?? ""
         let datos = modeloDatos?.zags?[indexPath.row].zag_parent ?? ZagParent()
-        let ocultarColeccion = (modeloDatos?.zags?[indexPath.row].zag_parent == nil) ? true : false
+        let ocultarColeccion = ((modeloDatos?.zags?[indexPath.row].zag_parent == nil) || (modeloDatos?.zags?[indexPath.row].zag_parent?.files?.count ?? 0 == 0)) ? true : false
         
         cell.delegate = self
         cell.configItem(nombre: nombreUsuario, imgUsuario: imagenUsuario, titulo: titulo, descripcion: descripción, filesDatos: datos)
