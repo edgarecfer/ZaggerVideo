@@ -17,6 +17,8 @@
 		6D1AA45A2BEB421500D5B745 /* ModeloPrincipal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1AA4592BEB421500D5B745 /* ModeloPrincipal.swift */; };
 		6D1AA45C2BEB425100D5B745 /* ApiZaggerPrincipal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1AA45B2BEB425100D5B745 /* ApiZaggerPrincipal.swift */; };
 		6D1AA45E2BEB494900D5B745 /* ControladorVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1AA45D2BEB494900D5B745 /* ControladorVP.swift */; };
+		6D3E89762BF1CB3200A360C1 /* VistaImagenZoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3E89752BF1CB3200A360C1 /* VistaImagenZoom.xib */; };
+		6D3E89782BF1CB4100A360C1 /* VistaImagenZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3E89772BF1CB4100A360C1 /* VistaImagenZoom.swift */; };
 		6D51277F2BEDD6E3004FA2B9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D51277E2BEDD6E3004FA2B9 /* MainTabBarController.swift */; };
 		6D5127882BEDDA4B004FA2B9 /* VistaZagsControlador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5127872BEDDA4B004FA2B9 /* VistaZagsControlador.swift */; };
 		6D51278A2BEDDA9C004FA2B9 /* VistaZagsControlador.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D5127892BEDDA9C004FA2B9 /* VistaZagsControlador.xib */; };
@@ -44,6 +46,8 @@
 		6D1AA4592BEB421500D5B745 /* ModeloPrincipal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeloPrincipal.swift; sourceTree = "<group>"; };
 		6D1AA45B2BEB425100D5B745 /* ApiZaggerPrincipal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiZaggerPrincipal.swift; sourceTree = "<group>"; };
 		6D1AA45D2BEB494900D5B745 /* ControladorVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControladorVP.swift; sourceTree = "<group>"; };
+		6D3E89752BF1CB3200A360C1 /* VistaImagenZoom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VistaImagenZoom.xib; sourceTree = "<group>"; };
+		6D3E89772BF1CB4100A360C1 /* VistaImagenZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaImagenZoom.swift; sourceTree = "<group>"; };
 		6D51277E2BEDD6E3004FA2B9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		6D5127872BEDDA4B004FA2B9 /* VistaZagsControlador.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaZagsControlador.swift; sourceTree = "<group>"; };
 		6D5127892BEDDA9C004FA2B9 /* VistaZagsControlador.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VistaZagsControlador.xib; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5127872BEDDA4B004FA2B9 /* VistaZagsControlador.swift */,
+				6D3E89772BF1CB4100A360C1 /* VistaImagenZoom.swift */,
 			);
 			path = Controlador;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5127892BEDDA9C004FA2B9 /* VistaZagsControlador.xib */,
+				6D3E89752BF1CB3200A360C1 /* VistaImagenZoom.xib */,
 			);
 			path = Vista;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 				6D1AA44A2BEB3E8800D5B745 /* LaunchScreen.storyboard in Resources */,
 				6D1AA4472BEB3E8800D5B745 /* Assets.xcassets in Resources */,
 				6D51278A2BEDDA9C004FA2B9 /* VistaZagsControlador.xib in Resources */,
+				6D3E89762BF1CB3200A360C1 /* VistaImagenZoom.xib in Resources */,
 				6D1AA4532BEB3EE300D5B745 /* Zags.json in Resources */,
 				6D51279C2BEDF01F004FA2B9 /* VistaPrincipal.xib in Resources */,
 				6D5127912BEDDC1B004FA2B9 /* MuroVista.xib in Resources */,
@@ -322,6 +329,7 @@
 				6D1AA4422BEB3E8700D5B745 /* ViewController.swift in Sources */,
 				6D1AA45E2BEB494900D5B745 /* ControladorVP.swift in Sources */,
 				6D1AA43E2BEB3E8700D5B745 /* AppDelegate.swift in Sources */,
+				6D3E89782BF1CB4100A360C1 /* VistaImagenZoom.swift in Sources */,
 				6D51278F2BEDDBF1004FA2B9 /* MuroControlador.swift in Sources */,
 				6DB3F42D2BF0337700A994A2 /* CeldaImgVideo.swift in Sources */,
 				6D51277F2BEDD6E3004FA2B9 /* MainTabBarController.swift in Sources */,

@@ -10,7 +10,7 @@ import SDWebImage
 import AVKit
 
 protocol CeldaImgVideoDelgate: AnyObject {
-    func verImgVideo(url: String)
+    func verImgVideo(url: String, esVideo: Bool)
 }
 
 class CeldaImgVideo: UICollectionViewCell {
@@ -32,6 +32,7 @@ class CeldaImgVideo: UICollectionViewCell {
     var playerLayer = AVPlayerLayer()
     var player = AVPlayer()
     var urlString = ""
+    var esVideo = false
     var visibleAction = false
     weak var delegate: CeldaImgVideoDelgate?
     
@@ -49,19 +50,20 @@ class CeldaImgVideo: UICollectionViewCell {
     }
     
     func configImagen(url: String, esVideo: Bool) {
+        self.esVideo = esVideo
+        self.urlString = url
         if esVideo {
             contenedorVideo.isHidden = false
             containerColorView.isHidden = false
             containerPlayPause.isHidden = false
             mostrarOpcionesBtn.isEnabled = true
             expandirBtn.isHidden = false
-            self.urlString = url
             videoPlay()
         } else {
             contenedorVideo.isHidden = true
             containerColorView.isHidden = true
             containerPlayPause.isHidden = true
-            mostrarOpcionesBtn.isEnabled = false
+//            mostrarOpcionesBtn.isEnabled = false
             expandirBtn.isHidden = true
             self.imagen.sd_setImage(with: URL(string: url), placeholderImage: UIImage(systemName: "photo.fill"))
         }
@@ -142,7 +144,11 @@ class CeldaImgVideo: UICollectionViewCell {
     }
 
     @IBAction func tapMostrarAccion(_ sender: Any) {
-        statusAction()
+        if esVideo {
+            statusAction()
+        } else {
+            delegate?.verImgVideo(url: self.urlString, esVideo: self.esVideo)
+        }
     }
     
     @IBAction func tapPlay(_ sender: Any) {
@@ -158,7 +164,7 @@ class CeldaImgVideo: UICollectionViewCell {
     }
     
     @IBAction func tapExpandir(_ sender: Any) {
-        delegate?.verImgVideo(url: self.urlString)
+        delegate?.verImgVideo(url: self.urlString, esVideo: self.esVideo)
     }
 }
 

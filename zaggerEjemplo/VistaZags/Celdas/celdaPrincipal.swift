@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 protocol celdaPrincipalDelegate:AnyObject {
-    func presentarImgVideo(url: String)
+    func presentarImgVideo(url: String, esVideo: Bool)
 }
 
 class celdaPrincipal: UICollectionViewCell {
@@ -138,7 +138,7 @@ extension celdaPrincipal: UICollectionViewDelegate, UICollectionViewDataSource, 
 }
 
 extension celdaPrincipal: CeldaImgVideoDelgate {
-    func verImgVideo(url: String) {
-        delegate?.presentarImgVideo(url: url)
+    func verImgVideo(url: String, esVideo: Bool) {
+        delegate?.presentarImgVideo(url: url, esVideo: esVideo)
     }
 }

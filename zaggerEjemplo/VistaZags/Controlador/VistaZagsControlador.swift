@@ -71,12 +71,19 @@ extension VistaZagsControlador: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension VistaZagsControlador: celdaPrincipalDelegate {
-    func presentarImgVideo(url: String) {
+    func presentarImgVideo(url: String, esVideo: Bool) {
         let url = url
-        let streamplayer = AVPlayer(url: URL(string: url)!)
-        streamController.player = streamplayer
-        self.present(self.streamController, animated: true, completion: {
-            self.streamController.player?.play()
-        })
+        if esVideo {
+            let streamplayer = AVPlayer(url: URL(string: url)!)
+            streamController.player = streamplayer
+            self.present(self.streamController, animated: true, completion: {
+                self.streamController.player?.play()
+            })
+        } else {
+            let vc = VistaImagenZoom(nibName: "VistaImagenZoom", bundle: nil)
+            vc.imagenUrl = url
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }
     }
 }
